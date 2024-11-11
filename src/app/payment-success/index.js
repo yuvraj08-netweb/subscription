@@ -2,10 +2,12 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { SiTicktick } from "react-icons/si";
+import { useRouter } from "next/navigation";
 
 export default function PaymentStatus() {
+  const router = useRouter();
   return (
-    <Box className="bg-white text-[#000] flex flex-col sm:max-w-max max-w-[95%] mx-auto items-center rounded-lg  ">
+    <Box className="bg-white text-[#000] flex flex-col sm:max-w-max max-w-[95%] mx-auto items-center rounded-lg  shadow-xl">
       <Box className="bg-green-600 w-full pt-10 text-white !text-center rounded-t-lg">
         <SiTicktick className="max-w-max md:!text-[90px] !text-[60px] mx-auto mb-5" />
 
