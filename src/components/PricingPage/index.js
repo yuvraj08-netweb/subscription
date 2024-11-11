@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -15,6 +15,7 @@ import {
   styled,
   useTheme,
   CircularProgress,
+  Backdrop,
 } from "@mui/material";
 import { BiCheck } from "react-icons/bi";
 import { useRouter } from "next/navigation";
@@ -38,7 +39,8 @@ const PricingPage = () => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.payment);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const plans = [
     {
@@ -84,28 +86,30 @@ const PricingPage = () => {
       ],
     },
   ];
-
+  
   const handlePlan = async (data) => {
-    {
-      if (loading) {
-        return (
-          <Box display="flex" justifyContent="center" my={4}>
-            <CircularProgress />
-          </Box>
-        );
-      }
-      const planData = {
-        planName: data.title,
-        amount: data.price,
-      };
+    setOpen(true);
+    setLoading(true);
+    console.log(loading, "loading");
 
-      dispatch(buySubsciption(planData))
-        .unwrap()
-        .then((res) => {
-          router.push(res?.data?.url);
-        })
-        .catch((err) => console.error(err));
-    }
+    const planData = {
+      planName: data.title,
+      amount: data.price,
+    };
+
+    dispatch(buySubsciption(planData))
+      .unwrap()
+      .then((res) => {
+        setOpen(true);
+        setLoading(false);
+        router.push(res?.data?.url);
+      })
+      .catch((err) => {
+        setOpen(true);
+        setLoading(false);
+        console.error(err);
+      });
+    console.log(loading, "loading");
   };
 
   return (
@@ -192,18 +196,25 @@ const PricingPage = () => {
                   fullWidth
                   size="large"
                   sx={{ mt: 3 }}
+                  disabled={loading ? true : false}
                   aria-label={`Choose ${plan.title} plan`}
                   onClick={() => {
                     handlePlan(plan);
                   }}
                 >
-                  Choose Plan
+                 Choose Plan
                 </Button>
               </CardContent>
             </StyledCard>
           </Grid>
         ))}
       </Grid>
+      <Backdrop
+        sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Container>
   );
 };
