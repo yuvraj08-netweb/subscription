@@ -12,3 +12,17 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+.loginForm input {
+  background: #ffffff1e;
+  border: 1px solid #535c91;
+  outline: none;
+  padding: 5px 12px;
+  border-radius: 7px;
+  width: 100%;
+  
+}
+.errorPara {
+  color: rgb(245, 62, 62);
+  font-weight: bold;
+  font-size: 11px;
+}
