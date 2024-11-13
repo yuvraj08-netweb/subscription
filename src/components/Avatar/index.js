@@ -6,7 +6,7 @@ export default function UserAvatar({ name }) {
   function stringAvatar(name) {
     return {
       sx: {
-        bgcolor: stringToColor(name),
+        bgcolor: "#f3f3f3",
         width: "80px",
         height: "80px",
       },

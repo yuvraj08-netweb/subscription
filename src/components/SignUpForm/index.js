@@ -211,7 +211,7 @@ const SignUpForm = () => {
           type="submit"
           disabled={loading}
         >
-          {loading ? <CircularProgress color="#000" /> : "Register"}
+          {loading ? <CircularProgress color="#fff" /> : "Register"}
         </Button>
       </div>
     </form>

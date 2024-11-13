@@ -109,7 +109,7 @@ const LoginForm = () => {
       <div className="formElement">
         <Button variant="contained" type="submit">
           {
-            loading ? <CircularProgress color="#000" /> : "Log In"
+            loading ? <CircularProgress color="#fff" /> : "Log In"
           }
         </Button>
       </div>
