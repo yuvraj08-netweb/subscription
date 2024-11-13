@@ -18,7 +18,7 @@ export default function SignUpPageContent() {
         <div className="container md:!w-[50%] !w-full md:px-20 px-12 flex flex-col py-5 justify-center items-center">
           <div className="formContianer max-w-xl md:w-full">
             <div className="formHeader">
-              <div className="flex text-white items-center text-bold">
+              <div className="flex text-black dark:text-white items-center font-bold">
               <img
                 src="https://cdn-icons-png.flaticon.com/256/5332/5332306.png"
                 className="mr-3 h-6 sm:h-9"
@@ -26,7 +26,7 @@ export default function SignUpPageContent() {
               />
               CompanyName
               </div>
-              <h2 className="text-2xl leading-9 font-bold mt-8 text-white">
+              <h2 className="text-2xl leading-9 font-bold mt-8 text-black dark:text-white">
                 Sign up for your account
               </h2>
               <p className="mt-2 text-sm text-gray-500">
