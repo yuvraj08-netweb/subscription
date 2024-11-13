@@ -15,6 +15,19 @@ export const buySubsciption = createAsyncThunk(
   }
 );
 
+export const manageSubsciption = createAsyncThunk(
+  "payment/manageSubsciption",
+  async (thunkAPI) => {
+    try {
+      const response = await axiosInstance.get("/customers");
+      if (response.data) {
+        return response;
+      }
+    } catch (error) {
+      throw thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const paymentSlice = createSlice({
   name: "payment",

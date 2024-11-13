@@ -1,0 +1,27 @@
+<div className="card border-2 shadow-xl min-w-[200px] min-h-[400px] py-6 px-4">
+  <div className="headerContainer flex flex-col justify-center items-center">
+    <UserAvatar name="{userData.fullName}" />
+    <h3 className="font-bold">{userData.fullName}</h3>
+  </div>
+  <div className="UserInfoContainer">
+    <div className="personalInfo">
+      <p>Email ID : <span>{userData.emailId}</span>{" "}</p>
+      <p>Contact Number : <span>{userData.contactNumber}</span></p>
+    </div>
+    <div className="PlanInfo">
+      Current Subscription Info
+      <ul>
+        <li>Subscription Name : {userData?.activePlan?.planName}</li>
+        <li>Subscription Amount : ${userData?.activePlan?.amount}</li>
+        <li>
+          Subscription Start Date :{" "}
+          {dayjs(userData?.activePlan?.startDate).format("DD MMM, YYYY")}
+        </li>
+        <li>
+          Subscription End Date :{" "}
+          {dayjs(userData?.activePlan?.endDate).format("DD MMM, YYYY")}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

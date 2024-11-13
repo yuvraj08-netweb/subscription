@@ -90,8 +90,6 @@ const PricingPage = () => {
   const handlePlan = async (data) => {
     setOpen(true);
     setLoading(true);
-    console.log(loading, "loading");
-
     const planData = {
       planName: data.title,
       amount: data.price,
@@ -109,7 +107,6 @@ const PricingPage = () => {
         setLoading(false);
         console.error(err);
       });
-    console.log(loading, "loading");
   };
 
   return (

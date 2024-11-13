@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
@@ -8,11 +8,12 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@mui/material";
-import { signInUser } from "@/store/slices/userSlice";
+import { getUserData, signInUser } from "@/store/slices/userSlice";
+import { setLocalStorage } from "@/utils";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -46,16 +47,20 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const submitForm = async (data) => {
-    console.log(data,"data");
-    
     try {
-        await dispatch(signInUser(data)).unwrap().then((res)=>{
-          console.log(res?.data?.data,"res");
-          localStorage.setItem("userCredentials", JSON.stringify(res?.data?.data))
-          navigate.push("/userArea");
-        })
+      await dispatch(signInUser(data))
+        .unwrap()
+        .then(async (res) => {
+          setLocalStorage("authToken", res?.data?.token);
+          await dispatch(getUserData(res?.data?.token))
+            .unwrap()
+            .then((res) => {
+              setLocalStorage("userData", res?.data);
+              navigate.push("/userArea");
+            });
+        });
     } catch (error) {
-      console.error(error,"ERROR")
+      console.error(error, "ERROR");
     }
     // try {
     //     await signInWithEmailAndPassword(auth, data.emailId, data.password).then(
@@ -75,7 +80,10 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="md:max-w-[350px] max-w-[85%] loginForm flex flex-col gap-5" onSubmit={handleSubmit(submitForm)}>
+    <form
+      className="md:max-w-[350px] max-w-[85%] loginForm flex flex-col gap-5"
+      onSubmit={handleSubmit(submitForm)}
+    >
       <div className="formElement">
         <Controller
           name="emailId"
@@ -110,11 +118,8 @@ const LoginForm = () => {
         <p className="errorPara">{errors.password?.message}</p>
       </div>
       <div className="formElement">
-        <Button
-            variant="contained"
-            type="submit"
-        >
-            Log In
+        <Button variant="contained" type="submit">
+          Log In
         </Button>
       </div>
     </form>

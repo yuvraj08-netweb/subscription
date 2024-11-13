@@ -1,14 +1,17 @@
 "use client";
 
 import PricingPage from "@/components/PricingPage";
+import UserProfilePage from "@/components/UserProfilePage";
+import { useSelector } from "react-redux";
 
 const UserAreaContent = () => {
-  return (
-    <div>
-        <h1>Welcome To User Area</h1>
-        <PricingPage/>
-    </div>
-  )
-}
+  const { userData } = useSelector((state) => state.user);
 
-export default UserAreaContent
+  return (
+    <>
+      {userData?.data?.messageForNull ||  userData?.messageForNull ? <PricingPage /> : <UserProfilePage />}
+    </>
+  );
+};
+
+export default UserAreaContent;

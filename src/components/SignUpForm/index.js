@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import PhoneInput from "react-phone-input-2";
@@ -83,13 +82,10 @@ const SignUpForm = () => {
         password:data.password,
     }
 
-    console.log(userData,"userData");
-
     try {
         await dispatch(createUser(userData))
         .unwrap()
-        .then((res)=>{
-            console.log(res,"res");
+        .then(()=>{
             router.push("/login");
             reset();
         })

@@ -1,26 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 import LoginForm from "@/components/LogInForm";
 import Link from "next/link";
-import React from "react";
 
 const LoginPageContent = () => {
   return (
-    <div className="flex justify-center align-center min-h-screen w-full">
+    <div className="flex justify-center align-center min-h-screen w-full bg-white dark:bg-gray-900">
       <div className="flex !w-full justify-center">
         <div className="container md:!w-[50%] !w-full md:px-20 px-12 flex flex-col py-5 justify-center items-center">
           <div className="formContianer max-w-xl md:w-full">
             <div className="formHeader">
-              <img
-                src="https://ilakkiasabap.wordpress.com/wp-content/uploads/2018/05/bsbr1t9a0resdcqo.png?w=621&h=221"
-                alt="companyLogo"
-                className="h-20 "
-              />
-              <h2 className="text-2xl leading-9 font-bold mt-8">
+              <div className="flex text-gray-800 dark:text-white items-center text-bold">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/256/5332/5332306.png"
+                  className="mr-3 h-6 sm:h-9"
+                  alt="Flowbite Logo"
+                />
+                CompanyName
+              </div>
+              <h2 className="text-2xl leading-9 font-bold mt-8 text-gray-800 dark:text-white">
                 Sign in to your account
               </h2>
               <p className="mt-2 text-sm text-gray-500">
                 Not a member?
-                <Link href="/sign-up" className="font-semibold text-indigo-700">
+                <Link href="/sign-up" className="font-semibold text-slate-300">
                   {" "}
                   Sign Up Here
                 </Link>
@@ -28,7 +30,7 @@ const LoginPageContent = () => {
             </div>
             <div className="lowerContent mt-10">
               <div className="formDiv">
-                <LoginForm/>
+                <LoginForm />
               </div>
             </div>
           </div>

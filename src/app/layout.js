@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import ReduxProvider from "@/lib/ReduxProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,7 +27,13 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>{children}</ReduxProvider>
+        <ToastContainer />
       </body>
+      <script
+        src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"
+        async
+        defer
+      ></script>
     </html>
   );
 }

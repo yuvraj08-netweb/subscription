@@ -1,3 +1,4 @@
+import { getLocalStorage } from "@/utils";
 import axios from "axios";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -9,7 +10,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    const token = process.env.NEXT_PUBLIC_TOKEN;
+    const token = getLocalStorage("authToken");
     config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
