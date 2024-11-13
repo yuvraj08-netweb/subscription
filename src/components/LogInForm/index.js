@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { getUserData, signInUser } from "@/store/slices/userSlice";
 import { setLocalStorage } from "@/utils";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading,setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -47,6 +47,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const submitForm = async (data) => {
+    setLoading(true);
     try {
       await dispatch(signInUser(data))
         .unwrap()
@@ -57,26 +58,14 @@ const LoginForm = () => {
             .then((res) => {
               setLocalStorage("userData", res?.data);
               navigate.push("/userArea");
+              toast.success("Login Successful !");
             });
+          setLoading(false);
         });
     } catch (error) {
+      toast.error("Login Failed !");
       console.error(error, "ERROR");
     }
-    // try {
-    //     await signInWithEmailAndPassword(auth, data.emailId, data.password).then(
-    //     () => {
-    //       dispatch(fetchUserData()).unwrap().then(async ()=> {
-    //         if(Notification.permission === "granted"){
-    //           generateToken();
-    //         }
-    //       })
-    //       reset();
-    //       navigate("/userArea");
-    //     }
-    //   );
-    // } catch (error) {
-    //   toast.error(`Log In Failed Due To : ${error.message}`);
-    // }
   };
 
   return (
@@ -119,7 +108,9 @@ const LoginForm = () => {
       </div>
       <div className="formElement">
         <Button variant="contained" type="submit">
-          Log In
+          {
+            loading ? <CircularProgress color="#000" /> : "Log In"
+          }
         </Button>
       </div>
     </form>

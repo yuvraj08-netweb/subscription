@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { getPhoneNumberWithDialCode } from "@/utils";
@@ -211,7 +211,7 @@ const SignUpForm = () => {
           type="submit"
           disabled={loading}
         >
-          {loading ? "Loading..." : "Register"}
+          {loading ? <CircularProgress color="#000" /> : "Register"}
         </Button>
       </div>
     </form>
