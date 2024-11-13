@@ -35,13 +35,13 @@ const StyledCard = styled(Card)(({ theme, isPopular }) => ({
   },
 }));
 
-const PricingPage = () => {
+const PricingPage = ({ from }) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const { userData } = useSelector((state) => state.user);
   const plans = [
     {
       title: "Starter",
@@ -86,8 +86,18 @@ const PricingPage = () => {
       ],
     },
   ];
-  
+
   const handlePlan = async (data) => {
+    // if(userData?.data?.activePlan?.planName || userData?.activePlan?.planName === data.title  && from!=="preUser"){
+    //   await dispatch(manageSubsciption())
+    //   .unwrap()
+    //   .then((res) => {
+    //     router.push(res?.data);
+    //     toast("Manage Your Subscriptions Here!");
+    //   });
+    //   return;
+    // }
+
     setOpen(true);
     setLoading(true);
     const planData = {
@@ -188,19 +198,47 @@ const PricingPage = () => {
                   ))}
                 </List>
 
-                <Button
+                {from === "preUser" ? (
+                  <Button
+                    variant={plan.isPopular ? "contained" : "outlined"}
+                    fullWidth
+                    size="large"
+                    sx={{ mt: 3 }}
+                    disabled={
+                      loading ||
+                      userData?.data?.activePlan?.planName ||
+                      userData?.activePlan?.planName === plan.title
+                        ? true
+                        : false
+                    }
+                    aria-label={`Choose ${plan.title} plan`}
+                    onClick={() => {
+                      handlePlan(plan);
+                    }}
+                  >
+                   Choose Plan
+                  </Button>
+                ) : (
+                  ""
+                )}
+
+                {/* <Button
                   variant={plan.isPopular ? "contained" : "outlined"}
                   fullWidth
                   size="large"
                   sx={{ mt: 3 }}
-                  disabled={loading ? true : false}
+                  disabled={loading || userData?.data?.activePlan?.planName || userData?.activePlan?.planName === plan.title  ? true : false}
                   aria-label={`Choose ${plan.title} plan`}
+
                   onClick={() => {
                     handlePlan(plan);
                   }}
                 >
-                 Choose Plan
-                </Button>
+                  {
+                    from==="preUser" ? "Choose Plan" : userData?.data?.activePlan?.planName || userData?.activePlan?.planName === plan.title ? "Current Plan" : "Upgrade Plan" 
+                  }
+                
+                </Button> */}
               </CardContent>
             </StyledCard>
           </Grid>

@@ -9,7 +9,7 @@ const UserAreaContent = () => {
 
   return (
     <>
-      {userData?.data?.messageForNull ||  userData?.messageForNull ? <PricingPage /> : <UserProfilePage />}
+      {userData?.data?.messageForNull ||  userData?.messageForNull ? <PricingPage from={"preUser"}/> : <UserProfilePage />}
     </>
   );
 };
