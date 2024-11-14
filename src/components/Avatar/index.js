@@ -10,7 +10,7 @@ export default function UserAvatar({ name }) {
         width: "80px",
         height: "80px",
       },
-      children: `${name[0]}`,
+      children: ``,
     };
   }
 
