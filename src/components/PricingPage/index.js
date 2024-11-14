@@ -100,6 +100,7 @@ const PricingPage = ({ from }) => {
     if (from !== "preUser") {
       setOpen(true);
       setLoading(true);
+      sessionStorage.setItem("comingFromStripe", "true");
       await dispatch(manageSubsciption())
         .unwrap()
         .then((res) => {
