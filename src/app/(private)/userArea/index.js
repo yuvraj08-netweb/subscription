@@ -18,13 +18,13 @@ const UserAreaContent = () => {
     await dispatch(getUserData())
       .unwrap()
       .then(() => {
+        setLoading(false);
       })
-      .finally(() => setLoading(false));
   }
 
   useEffect(() => {
     fetchData(); // Fetch data on return from Stripe
-  }, [dispatch,fetchData]);
+  }, [dispatch]);
 
   if (loading) {
     return <Loader />;
