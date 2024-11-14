@@ -58,7 +58,7 @@ export const logout = createAsyncThunk("user/logout", async (thunkAPI) => {
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    userData: getLocalStorage("userData") || null,
+    userData: null,
     loading: false,
   },
   reducers: {},
