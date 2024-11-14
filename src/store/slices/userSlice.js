@@ -8,7 +8,7 @@ export const createUser = createAsyncThunk(
     try {
       const response = await axiosInstance.post("/regester", userData);
       if (response.data) {
-        return response;
+        return response.data;
       }
     } catch (error) {
       throw thunkAPI.rejectWithValue(error.message);

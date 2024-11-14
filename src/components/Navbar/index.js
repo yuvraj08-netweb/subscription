@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { logout } from "@/store/slices/userSlice";
-import { clearLocalStorage } from "@/utils";
+import { clearLocalStorage, getLocalStorage } from "@/utils";
 import { Button } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -13,6 +13,8 @@ export default function Navbar() {
   const { userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const router = useRouter();
+  const authToken = getLocalStorage("authToken") || null;
+
   const handleLogout = async () => {
     try {
       await dispatch(logout())
@@ -44,7 +46,7 @@ export default function Navbar() {
                 CompanyName
               </span>
             </Link>
-            {userData === null ? (
+            {authToken === null ? (
               <div className="flex items-center lg:order-2">
                 <Link
                   href="/login"

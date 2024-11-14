@@ -65,7 +65,7 @@ const LoginForm = () => {
         });
       setLoading(false);
     } catch (error) {
-      toast.error("Login Failed !");
+      toast.error(`Invalid Email Adress or Password! `);
       setLoading(false);
       console.error(error, "ERROR");
     }

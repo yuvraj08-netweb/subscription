@@ -7,7 +7,7 @@ export const buySubsciption = createAsyncThunk(
     try {
       const response = await axiosInstance.post("/subscribe", planData);
       if (response.data) {
-        return response;
+        return response.data;
       }
     } catch (error) {
       throw thunkAPI.rejectWithValue(error.message);
@@ -35,7 +35,7 @@ export const updateSubscriptionTime = createAsyncThunk(
     try {
       const response = await axiosInstance.post("/updateSubscriptionTime");
       if (response.data) {
-        return response;
+        return response.data;
       }
     } catch (error) {
       throw thunkAPI.rejectWithValue(error.message);

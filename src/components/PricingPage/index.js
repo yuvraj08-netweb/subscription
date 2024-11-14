@@ -119,7 +119,7 @@ const PricingPage = ({ from }) => {
         .unwrap()
         .then((res) => {
           setLoading(false);
-          router.push(res?.data);
+          router.push(res);
           setOpen(false);
         })
         .catch((err) => {
