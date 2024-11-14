@@ -11,7 +11,6 @@ export default function LandingPage() {
 
   useEffect(() => {
     async function fetchData() {
-      // setLoading(true);
       await dispatch(getUserData())
         .unwrap()
         .then(() => {
