@@ -10,7 +10,6 @@ export default function Pricing() {
 
     return (
         <>
-            <Navbar/>
            <PricingPage/>
         </>
     );

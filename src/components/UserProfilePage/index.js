@@ -3,7 +3,6 @@
 import { useSelector } from "react-redux";
 import CustomerInfoSection from "../ContactInfoSection";
 import DataTable from "../DataTable";
-import PricingPage from "../PricingPage";
 import UserAreaSkeleton from "../UserAreaSkeleton";
 
 export default function UserProfilePage({loading}) {

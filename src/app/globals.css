@@ -25,6 +25,14 @@ body {
   width: 100%;
   color: #eee;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #2D3340 inset !important;
+  -webkit-text-fill-color: #eee !important;
+}
+
 .errorPara {
   color: rgb(245, 62, 62);
   font-weight: bold;
@@ -33,7 +41,7 @@ body {
 .MuiButtonBase-root:disabled {
   cursor: not-allowed;
   pointer-events: auto;
-  /* color: white; */
+  color: rgb(32, 133, 190);
   background-color: #d8d8d8 !important;
 }
 

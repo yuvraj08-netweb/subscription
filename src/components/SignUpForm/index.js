@@ -14,9 +14,38 @@ import { createUser } from "@/store/slices/userSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
+// Import PhoneNumberUtil from google-libphonenumber
+import { PhoneNumberUtil } from "google-libphonenumber";
+
+// Initialize PhoneNumberUtil
+const phoneUtil = PhoneNumberUtil.getInstance();
+
+// Function to get the minimum valid phone number length for a given country code
+const getMinPhoneNumberLength = (countryCode) => {
+  try {
+    // Get the metadata for the region
+    const regionMetadata = phoneUtil.getMetadataForRegion(countryCode);
+
+    if (regionMetadata) {
+      // Get an example number for this region
+      const exampleNumber = phoneUtil.getExampleNumber(countryCode);
+      // If exampleNumber is not null, return its length
+      if (exampleNumber) {
+        return exampleNumber.getNationalNumber().toString().length;
+      }
+    }
+
+    return 0;
+  } catch (error) {
+    console.error("Error getting phone number metadata:", error);
+    return 0;
+  }
+};
+
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [countryCode, setCountryCode] = useState("in"); // Default country code (India)
 
   // Toggle password visibility
   const togglePasswordVisibility = () => {
@@ -28,6 +57,7 @@ const SignUpForm = () => {
     setShowConfirmPassword((prev) => !prev);
   };
 
+  // Dynamically validate phone number length based on country
   const schema = yup.object().shape({
     fullName: yup.string().required("Please Provide Your Name"),
     emailId: yup
@@ -37,6 +67,22 @@ const SignUpForm = () => {
         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
         "Email is Invalid"
       ),
+    contactNumber: yup
+      .string()
+      .required("Phone number is required!")
+      .test("phone-length", function (value) {
+        const minLength = getMinPhoneNumberLength(countryCode);
+        const mobile = getPhoneNumberWithDialCode();
+        // Check if the mobile number meets the required length
+        if (mobile && mobile.phone.length < minLength) {
+          return this.createError({
+            message: `Phone number must be of min ${minLength} characters.`,
+          });
+        }
+        return true; // Return true if validation passes
+
+        // return mobile && mobile.phone.length >= minLength;
+      }),
     password: yup
       .string()
       .required("Password is required!")
@@ -69,6 +115,7 @@ const SignUpForm = () => {
       confirmPassword: "",
     },
   });
+
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -127,12 +174,13 @@ const SignUpForm = () => {
             return (
               <PhoneInput
                 {...field}
-                country={"in"}
+                country={countryCode} // Set the default country code here
                 placeholder="00000-00000"
                 enableSearch={true}
                 value={field?.value}
-                onChange={() => {
-                  field.onChange();
+                onChange={(value, data) => {
+                  field.onChange(value); // Trigger onChange for form
+                  setCountryCode(data.countryCode); // Update countryCode based on user input
                 }}
                 errorMessage={errors?.contactNumber?.message}
                 inputStyle={{
@@ -146,7 +194,6 @@ const SignUpForm = () => {
             );
           }}
         />
-
         <p className="errorPara">{errors.contactNumber?.message}</p>
       </div>
       <div className="formElement relative">
@@ -222,43 +269,41 @@ const SignUpForm = () => {
                 className="absolute top-2 right-5 text-[#fff] cursor-pointer"
                 onClick={toggleConfirmPasswordVisibility}
               >
-               {
-                    showConfirmPassword ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-eye"
-                      >
-                        <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
-                        <circle cx="12" cy="12" r="3" />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-eye-off"
-                      >
-                        <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
-                        <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
-                        <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
-                        <path d="m2 2 20 20" />
-                      </svg>
-                    )
-                  }
+                {showConfirmPassword ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-eye"
+                  >
+                    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-eye-off"
+                  >
+                    <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                    <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                    <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                    <path d="m2 2 20 20" />
+                  </svg>
+                )}
               </span>
             </>
           )}
@@ -280,7 +325,11 @@ const SignUpForm = () => {
           type="submit"
           disabled={loading}
         >
-          {loading ? <CircularProgress color="#fff" size={"20px"}/> : "Register"}
+          {loading ? (
+            <CircularProgress color="#fff" size={"20px"} />
+          ) : (
+            "Register"
+          )}
         </Button>
       </div>
     </form>
