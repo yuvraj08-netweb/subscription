@@ -117,12 +117,12 @@ const PricingPage = ({ from }) => {
       dispatch(buySubsciption(planData))
         .unwrap()
         .then((res) => {
-          setOpen(true);
           setLoading(false);
           router.push(res?.data);
+          setOpen(false);
         })
         .catch((err) => {
-          setOpen(true);
+          setOpen(false);
           setLoading(false);
           console.error(err);
         });
