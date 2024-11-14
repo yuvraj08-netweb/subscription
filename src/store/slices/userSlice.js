@@ -1,5 +1,4 @@
 import axiosInstance from "@/lib/axiosInstance";
-import { getLocalStorage } from "@/utils";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const createUser = createAsyncThunk(

@@ -7,7 +7,6 @@ import Loader from "@/components/Loader"; // Import a Loader component
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserData } from "@/store/slices/userSlice";
-import { setLocalStorage } from "@/utils";
 
 const UserAreaContent = () => {
   const { userData } = useSelector((state) => state.user);
@@ -18,20 +17,14 @@ const UserAreaContent = () => {
     setLoading(true);
     await dispatch(getUserData())
       .unwrap()
-      .then((res) => {
-        setLocalStorage("userData", res?.data);
+      .then(() => {
       })
       .finally(() => setLoading(false));
   }
 
   useEffect(() => {
-    // Check if the user is coming from Stripe
-    if (sessionStorage.getItem("comingFromStripe")) {
-      fetchData(); // Fetch data on return from Stripe
-      sessionStorage.removeItem("comingFromStripe"); // Clear the flag
-    }
-    setLoading(false)
-  }, [dispatch]);
+    fetchData(); // Fetch data on return from Stripe
+  }, [dispatch,fetchData]);
 
   if (loading) {
     return <Loader />;

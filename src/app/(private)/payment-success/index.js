@@ -12,7 +12,7 @@ export default function PaymentStatus() {
 
   useEffect(() => {
     dispatch(updateSubscriptionTime());
-  }, [dispatch]);
+  });
 
   return (
     <Box className="bg-white text-[#000] flex flex-col sm:max-w-max max-w-[95%] mx-auto items-center rounded-lg  shadow-xl">
