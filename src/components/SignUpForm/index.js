@@ -12,6 +12,7 @@ import { getPhoneNumberWithDialCode } from "@/utils";
 import { useDispatch } from "react-redux";
 import { createUser } from "@/store/slices/userSlice";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -72,27 +73,29 @@ const SignUpForm = () => {
   const router = useRouter();
 
   const submitForm = async (data) => {
-
+    setLoading(true);
     const mobile = getPhoneNumberWithDialCode();
     const userData = {
-        fullName: data.fullName,
-        emailId: data.emailId,
-        contactNumber: mobile.phone,
-        countryCode: mobile.code,
-        password:data.password,
-    }
+      fullName: data.fullName,
+      emailId: data.emailId,
+      contactNumber: mobile.phone,
+      countryCode: mobile.code,
+      password: data.password,
+    };
 
     try {
-        await dispatch(createUser(userData))
+      await dispatch(createUser(userData))
         .unwrap()
-        .then(()=>{
-            router.push("/login");
-            reset();
-        })
+        .then(() => {
+          reset();
+          setLoading(false);
+          toast.success("User Registered Successfully!");
+          router.push("/login");
+        });
     } catch (error) {
-        console.error("User Creation Failed Due To : ",error)
+      toast.error("User Creation Failed ! : ");
+      setLoading(false);
     }
-   
   };
 
   return (
@@ -136,6 +139,8 @@ const SignUpForm = () => {
                   padding: "5px 55px",
                   width: "100%",
                   border: "1px solid #535c91",
+                  background: "#ffffff1e",
+                  color: "#fff",
                 }}
               />
             );
@@ -157,12 +162,44 @@ const SignUpForm = () => {
                 id="password"
               />
               <span
-                className="absolute top-3 right-5 text-[#fff] cursor-pointer"
+                className="absolute top-2 right-5 text-[#fff] cursor-pointer"
                 onClick={togglePasswordVisibility}
               >
-                <i
-                  className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
-                ></i>
+                {showPassword ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-eye"
+                  >
+                    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-eye-off"
+                  >
+                    <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                    <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                    <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                    <path d="m2 2 20 20" />
+                  </svg>
+                )}
               </span>
             </>
           )}
@@ -182,14 +219,46 @@ const SignUpForm = () => {
                 id="confirmPassword"
               />
               <span
-                className="absolute top-3 right-5 text-[#fff] cursor-pointer"
+                className="absolute top-2 right-5 text-[#fff] cursor-pointer"
                 onClick={toggleConfirmPasswordVisibility}
               >
-                <i
-                  className={`fa ${
-                    showConfirmPassword ? "fa-eye-slash" : "fa-eye"
-                  }`}
-                ></i>
+               {
+                    showConfirmPassword ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-eye"
+                      >
+                        <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-eye-off"
+                      >
+                        <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                        <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                        <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                        <path d="m2 2 20 20" />
+                      </svg>
+                    )
+                  }
               </span>
             </>
           )}
@@ -211,7 +280,7 @@ const SignUpForm = () => {
           type="submit"
           disabled={loading}
         >
-          {loading ? <CircularProgress color="#fff" /> : "Register"}
+          {loading ? <CircularProgress color="#fff" size={"20px"}/> : "Register"}
         </Button>
       </div>
     </form>

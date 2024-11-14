@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>{children}</ReduxProvider>
-        <ToastContainer />
+        <ToastContainer position="bottom-right" />
       </body>
       <script
         src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"

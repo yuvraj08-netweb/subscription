@@ -9,10 +9,12 @@ import { useRouter } from "next/navigation";
 import { Button, CircularProgress } from "@mui/material";
 import { getUserData, signInUser } from "@/store/slices/userSlice";
 import { setLocalStorage } from "@/utils";
+import Loading from "@/app/loading";
+import { Eye, EyeOff } from "lucide";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -53,17 +55,18 @@ const LoginForm = () => {
         .unwrap()
         .then(async (res) => {
           setLocalStorage("authToken", res?.data?.token);
-          await dispatch(getUserData(res?.data?.token))
+          await dispatch(getUserData())
             .unwrap()
             .then((res) => {
               setLocalStorage("userData", res?.data);
-              navigate.push("/userArea");
               toast.success("Login Successful !");
+              navigate.push("/userArea");
             });
-          setLoading(false);
         });
+      setLoading(false);
     } catch (error) {
       toast.error("Login Failed !");
+      setLoading(false);
       console.error(error, "ERROR");
     }
   };
@@ -94,12 +97,44 @@ const LoginForm = () => {
                 id="password"
               />
               <span
-                className="absolute top-3 right-5 text-[#fff] cursor-pointer"
+                className="absolute top-2 right-5 text-[#fff] cursor-pointer"
                 onClick={togglePasswordVisibility}
               >
-                <i
-                  className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
-                ></i>
+                {!showPassword ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-eye-off"
+                  >
+                    <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                    <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                    <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                    <path d="m2 2 20 20" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-eye"
+                  >
+                    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
               </span>
             </>
           )}
@@ -107,10 +142,13 @@ const LoginForm = () => {
         <p className="errorPara">{errors.password?.message}</p>
       </div>
       <div className="formElement">
-        <Button variant="contained" type="submit">
-          {
-            loading ? <CircularProgress color="#fff" /> : "Log In"
-          }
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={loading}
+          color="info"
+        >
+          {loading ? <CircularProgress color="#fff" size={"20px"} /> : "Log In"}
         </Button>
       </div>
     </form>

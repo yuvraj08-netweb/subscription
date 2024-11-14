@@ -20,7 +20,7 @@ import {
 import { BiCheck } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { buySubsciption } from "@/store/slices/paymentSlice";
+import { buySubsciption, manageSubsciption } from "@/store/slices/paymentSlice";
 
 const StyledCard = styled(Card)(({ theme, isPopular }) => ({
   height: "100%",
@@ -97,26 +97,33 @@ const PricingPage = ({ from }) => {
     //   });
     //   return;
     // }
+    if (from !== "preUser") {
+      await dispatch(manageSubsciption())
+        .unwrap()
+        .then((res) => {
+          router.push(res?.data);
+        });
+    } else {
+      setOpen(true);
+      setLoading(true);
+      const planData = {
+        planName: data.title,
+        amount: data.price,
+      };
 
-    setOpen(true);
-    setLoading(true);
-    const planData = {
-      planName: data.title,
-      amount: data.price,
-    };
-
-    dispatch(buySubsciption(planData))
-      .unwrap()
-      .then((res) => {
-        setOpen(true);
-        setLoading(false);
-        router.push(res?.data?.url);
-      })
-      .catch((err) => {
-        setOpen(true);
-        setLoading(false);
-        console.error(err);
-      });
+      dispatch(buySubsciption(planData))
+        .unwrap()
+        .then((res) => {
+          setOpen(true);
+          setLoading(false);
+          router.push(res?.data);
+        })
+        .catch((err) => {
+          setOpen(true);
+          setLoading(false);
+          console.error(err);
+        });
+    }
   };
 
   return (
@@ -198,7 +205,7 @@ const PricingPage = ({ from }) => {
                   ))}
                 </List>
 
-                {from === "preUser" ? (
+                {/* {from === "preUser" ? (
                   <Button
                     variant={plan.isPopular ? "contained" : "outlined"}
                     fullWidth
@@ -220,25 +227,30 @@ const PricingPage = ({ from }) => {
                   </Button>
                 ) : (
                   ""
-                )}
+                )} */}
 
-                {/* <Button
+                <Button
                   variant={plan.isPopular ? "contained" : "outlined"}
                   fullWidth
                   size="large"
                   sx={{ mt: 3 }}
-                  disabled={loading || userData?.data?.activePlan?.planName || userData?.activePlan?.planName === plan.title  ? true : false}
+                  disabled={
+                    loading ||
+                    userData?.data?.activePlan?.planName === plan.title
+                      ? true
+                      : false
+                  }
                   aria-label={`Choose ${plan.title} plan`}
-
                   onClick={() => {
                     handlePlan(plan);
                   }}
                 >
-                  {
-                    from==="preUser" ? "Choose Plan" : userData?.data?.activePlan?.planName || userData?.activePlan?.planName === plan.title ? "Current Plan" : "Upgrade Plan" 
-                  }
-                
-                </Button> */}
+                  {from === "preUser"
+                    ? "Choose Plan"
+                    : userData?.data?.activePlan?.planName === plan.title
+                    ? "Current Plan"
+                    : "Upgrade Plan"}
+                </Button>
               </CardContent>
             </StyledCard>
           </Grid>

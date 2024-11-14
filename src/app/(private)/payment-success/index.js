@@ -1,11 +1,19 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { SiTicktick } from "react-icons/si";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { updateSubscriptionTime } from "@/store/slices/paymentSlice";
 
 export default function PaymentStatus() {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateSubscriptionTime());
+  }, [dispatch]);
+
   return (
     <Box className="bg-white text-[#000] flex flex-col sm:max-w-max max-w-[95%] mx-auto items-center rounded-lg  shadow-xl">
       <Box className="bg-green-600 w-full pt-10 text-white !text-center rounded-t-lg">
@@ -36,7 +44,7 @@ export default function PaymentStatus() {
           <Button
             variant="outlined"
             color="success"
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/userArea")}
           >
             Go To Dashboard
           </Button>

@@ -2,8 +2,8 @@ import { stringToColor } from "@/utils";
 import { Avatar } from "@mui/material";
 
 export default function UserAvatar({ name }) {
-  console.log(name,"name")
-  function stringAvatar(name) {
+
+  function stringAvatar() {
     return {
       sx: {
         bgcolor: "#f3f3f3",

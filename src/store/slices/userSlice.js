@@ -11,7 +11,7 @@ export const createUser = createAsyncThunk(
         return response;
       }
     } catch (error) {
-      throw thunkAPI.rejectWithValue(error.response.data);
+      throw thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -25,7 +25,7 @@ export const signInUser = createAsyncThunk(
         return response.data;
       }
     } catch (error) {
-      throw thunkAPI.rejectWithValue(error.response.data);
+      throw thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -39,7 +39,7 @@ export const getUserData = createAsyncThunk(
         return response.data;
       }
     } catch (error) {
-      throw thunkAPI.rejectWithValue(error.response.data);
+      throw thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -51,7 +51,7 @@ export const logout = createAsyncThunk("user/logout", async (thunkAPI) => {
       return response.data;
     }
   } catch (error) {
-    throw thunkAPI.rejectWithValue(error.response.data);
+    throw thunkAPI.rejectWithValue(error.message);
   }
 });
 

@@ -24,15 +24,16 @@ export default function DataTable({ data }) {
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      planName: data?.activePlan?.planName,
-      amount: data?.activePlan?.amount,
-      startDate: dayjs(data?.activePlan?.startDate).format("DD MMM, YYYY"),
-      endDate: dayjs(data?.activePlan?.endDate).format("DD MMM, YYYY"),
-    },
-  ];
+  // Mapping the data into the desired format
+  const rows = data?.subscriptionHistory?.map((item, idx) => {
+    return {
+      id: idx+1, // Using index as ID
+      planName: item?.planName, // Plan name
+      amount: "$"+item?.amount, // Subscription amount
+      startDate: dayjs(item?.startDate).format("DD MMM, YYYY"), // Formatted start date
+      endDate: dayjs(item?.endDate).format("DD MMM, YYYY"), // Formatted end date
+    };
+  });
 
   const paginationModel = { page: 0, pageSize: 5 };
 

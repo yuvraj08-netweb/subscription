@@ -6,13 +6,11 @@ import React from "react";
 import UserAvatar from "../Avatar";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { manageSubsciption } from "@/store/slices/paymentSlice";
 import { useRouter } from "next/navigation";
+import { manageSubsciption } from "@/store/slices/paymentSlice";
 
 const CustomerInfoSection = () => {
   const { userData, loading } = useSelector((state) => state.user);
-  console.log(userData,"userData")
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -21,7 +19,6 @@ const CustomerInfoSection = () => {
       .unwrap()
       .then((res) => {
         router.push(res?.data);
-        toast("Manage Your Subscriptions Here!");
       });
   };
 

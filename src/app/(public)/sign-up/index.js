@@ -32,7 +32,7 @@ export default function SignUpPageContent() {
               <p className="mt-2 text-sm text-gray-500">
                 Already a member?
                 <Link href="/login" className="font-semibold text-slate-300">
-                  {" "}
+                
                   Log In Here
                 </Link>
               </p>
