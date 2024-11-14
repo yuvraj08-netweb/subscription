@@ -10,7 +10,7 @@ export default function UserAvatar({ name }) {
         width: "80px",
         height: "80px",
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: `${name[0]}`,
     };
   }
 
