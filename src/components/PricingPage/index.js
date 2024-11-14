@@ -98,9 +98,12 @@ const PricingPage = ({ from }) => {
     //   return;
     // }
     if (from !== "preUser") {
+      setOpen(true);
+      setLoading(true);
       await dispatch(manageSubsciption())
         .unwrap()
         .then((res) => {
+          setLoading(false);
           router.push(res?.data);
         });
     } else {

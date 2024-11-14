@@ -34,7 +34,7 @@ export const getUserData = createAsyncThunk(
   "user/getUserData",
   async (thunkAPI) => {
     try {
-      const response = await axiosInstance.get("/showdata");
+      const response = await axiosInstance.get("/userDetailAndSubscriptionHistory");
       if (response.data) {
         return response.data;
       }

@@ -14,13 +14,19 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const router = useRouter();
   const handleLogout = async () => {
-    await dispatch(logout())
+    try {
+      await dispatch(logout())
       .unwrap()
       .then(() => {
         clearLocalStorage();
         toast.success("Logout Successful!")
         router.push("/login");
       });
+    } catch (error) {
+      console.error(error);
+      toast.error("Logout Failed !");
+    }
+   
   };
 
   return (
