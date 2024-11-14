@@ -16,11 +16,11 @@ export default function Layout({ children }) {
     if (!authToken) {
       router.replace("/");
     } else {
-      setIsLoading(false); // Hide loader once authorized
+      setIsLoading(false);
     }
   }, [router]);
 
-  if (isLoading) return <Loader />; // Display the loader while checking authorization
+  if (isLoading) return <Loader />;  
 
   return (
     <>

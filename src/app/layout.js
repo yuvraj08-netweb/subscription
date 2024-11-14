@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Subscription | Pricing Page",
+  title: "CompanyName",
   description: "",
 };
 
@@ -29,11 +29,6 @@ export default function RootLayout({ children }) {
         <ReduxProvider>{children}</ReduxProvider>
         <ToastContainer position="bottom-right" />
       </body>
-      <script
-        src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"
-        async
-        defer
-      ></script>
     </html>
   );
 }

@@ -1,12 +1,11 @@
 import axiosInstance from "@/lib/axiosInstance";
-import { getLocalStorage } from "@/utils";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const createUser = createAsyncThunk(
   "user/createUser",
   async (userData, thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/regester", userData);
+      const response = await axiosInstance.post("/register", userData);
       if (response.data) {
         return response.data;
       }
@@ -20,7 +19,7 @@ export const signInUser = createAsyncThunk(
   "user/signInUser",
   async (userData, thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/Login", userData);
+      const response = await axiosInstance.post("/login", userData);
       if (response.data) {
         return response.data;
       }
@@ -46,7 +45,7 @@ export const getUserData = createAsyncThunk(
 
 export const logout = createAsyncThunk("user/logout", async (thunkAPI) => {
   try {
-    const response = await axiosInstance.post("/Logout");
+    const response = await axiosInstance.post("/logout");
     if (response.data) {
       return response.data;
     }

@@ -1,7 +1,7 @@
 import PaymentFailed from ".";
 
 export const metadata = {
-  title: "Subscription | Payment Failed",
+  title: "CompanyName | Payment Failed",
   description: "",
 };
 
