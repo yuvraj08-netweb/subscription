@@ -57,8 +57,7 @@ const LoginForm = () => {
           setLocalStorage("authToken", res?.data?.token);
           await dispatch(getUserData())
             .unwrap()
-            .then((res) => {
-              setLocalStorage("userData", res?.data);
+            .then(() => {
               toast.success("Login Successful !");
               navigate.push("/userArea");
             });

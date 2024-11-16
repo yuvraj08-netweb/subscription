@@ -15,8 +15,6 @@ const CustomerInfoSection = () => {
   const router = useRouter();
 
   const handleManageSubscription = async () => {
-    
-    sessionStorage.setItem("comingFromStripe", "true");
     await dispatch(manageSubsciption())
       .unwrap()
       .then((res) => {

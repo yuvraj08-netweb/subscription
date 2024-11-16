@@ -2,7 +2,6 @@
 "use client"
 
 import { getUserData } from "@/store/slices/userSlice";
-import { setLocalStorage } from "@/utils";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -12,11 +11,9 @@ export default function LandingPage() {
 
   useEffect(() => {
     async function fetchData() {
-      // setLoading(true);
       await dispatch(getUserData())
         .unwrap()
-        .then((res) => {
-          setLocalStorage("userData", res?.data);
+        .then(() => {
         })
     }
     fetchData();
