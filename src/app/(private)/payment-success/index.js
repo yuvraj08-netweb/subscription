@@ -1,18 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { SiTicktick } from "react-icons/si";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { updateSubscriptionTime } from "@/store/slices/paymentSlice";
 
 export default function PaymentStatus() {
   const router = useRouter();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(updateSubscriptionTime());
-  },[dispatch]);
 
   return (
     <Box className="bg-white text-[#000] flex flex-col sm:max-w-max max-w-[95%] mx-auto items-center rounded-lg  shadow-xl">

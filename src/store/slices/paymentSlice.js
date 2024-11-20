@@ -15,6 +15,19 @@ export const buySubsciption = createAsyncThunk(
   }
 );
 
+export const getProductsList = createAsyncThunk(
+  "payment/getProductsList",
+  async (thunkAPI) => {
+    try {
+      const response = await axiosInstance.get("/productsDetail");
+      if (response.data) {
+        return response.data;
+      }
+    } catch (error) {
+      throw thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 export const manageSubsciption = createAsyncThunk(
   "payment/manageSubsciption",
   async (thunkAPI) => {
@@ -22,20 +35,6 @@ export const manageSubsciption = createAsyncThunk(
       const response = await axiosInstance.get("/customers");
       if (response.data) {
         return response;
-      }
-    } catch (error) {
-      throw thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const updateSubscriptionTime = createAsyncThunk(
-  "payment/updateSubscriptionTime",
-  async (thunkAPI) => {
-    try {
-      const response = await axiosInstance.post("/updateSubscriptionTime");
-      if (response.data) {
-        return response.data;
       }
     } catch (error) {
       throw thunkAPI.rejectWithValue(error.message);

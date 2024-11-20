@@ -140,8 +140,8 @@ const SignUpForm = () => {
           router.push("/login");
         });
     } catch (error) {
-      toast.error("User Creation Failed ! : ");
       setLoading(false);
+      toast.error(error?.response?.data?.message);
     }
   };
 
