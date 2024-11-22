@@ -10,7 +10,7 @@ export const createUser = createAsyncThunk(
         return response.data;
       }
     } catch (error) {
-      throw thunkAPI.rejectWithValue(error);
+      throw thunkAPI.rejectWithValue(error?.response?.data?.message);
     }
   }
 );

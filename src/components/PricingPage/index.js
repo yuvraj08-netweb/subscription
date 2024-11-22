@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -21,6 +21,8 @@ import { BiCheck } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { buySubsciption, manageSubsciption } from "@/store/slices/paymentSlice";
+import Loader from "../Loader";
+
 
 const StyledCard = styled(Card)(({ theme, isPopular }) => ({
   height: "100%",
@@ -42,50 +44,61 @@ const PricingPage = ({ from }) => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const { userData } = useSelector((state) => state.user);
-  const plans = [
-    {
-      title: "Starter",
-      price: "29",
-      description: "Perfect for small businesses and startups",
-      isPopular: false,
-      features: [
-        "Up to 5 team members",
-        "Basic analytics",
-        "24/7 support",
-        "2GB storage space",
-        "Custom domain",
-        "API access",
-      ],
-    },
-    {
-      title: "Growth",
-      price: "79",
-      description: "Ideal for growing companies",
-      isPopular: true,
-      features: [
-        "Up to 20 team members",
-        "Advanced analytics",
-        "Priority support",
-        "10GB storage space",
-        "Custom integrations",
-        "Advanced security",
-      ],
-    },
-    {
-      title: "Enterprise",
-      price: "199",
-      description: "For large scale enterprises",
-      isPopular: false,
-      features: [
-        "Unlimited team members",
-        "Custom analytics",
-        "Dedicated support",
-        "Unlimited storage",
-        "White-label solution",
-        "Advanced security + backup",
-      ],
-    },
-  ];
+  const {plans} = useSelector((state)=>state.payment);
+  console.log(plans,"plan")
+  // useEffect(()=>{
+  //   setLoading(true)
+  //   dispatch(getProductsList()).unwrap().then(()=>{
+  //     setLoading(false);
+  //   }).catch(()=>{
+  //     setLoading(false);
+  //   })
+  // },[dispatch])
+
+  // const plans = [
+  //   {
+  //     title: "Starter",
+  //     price: "29",
+  //     description: "Perfect for small businesses and startups",
+  //     isPopular: false,
+  //     features: [
+  //       "Up to 5 team members",
+  //       "Basic analytics",
+  //       "24/7 support",
+  //       "2GB storage space",
+  //       "Custom domain",
+  //       "API access",
+  //     ],
+  //   },
+  //   {
+  //     title: "Growth",
+  //     price: "79",
+  //     description: "Ideal for growing companies",
+  //     isPopular: true,
+  //     features: [
+  //       "Up to 20 team members",
+  //       "Advanced analytics",
+  //       "Priority support",
+  //       "10GB storage space",
+  //       "Custom integrations",
+  //       "Advanced security",
+  //     ],
+  //   },
+  //   {
+  //     title: "Enterprise",
+  //     price: "199",
+  //     description: "For large scale enterprises",
+  //     isPopular: false,
+  //     features: [
+  //       "Unlimited team members",
+  //       "Custom analytics",
+  //       "Dedicated support",
+  //       "Unlimited storage",
+  //       "White-label solution",
+  //       "Advanced security + backup",
+  //     ],
+  //   },
+  // ];
 
   const handlePlan = async (data) => {
     // if(userData?.data?.activePlan?.planName || userData?.activePlan?.planName === data.title  && from!=="preUser"){
@@ -109,16 +122,12 @@ const PricingPage = ({ from }) => {
     } else {
       setOpen(true);
       setLoading(true);
-      const planData = {
-        planName: data.title,
-        amount: data.price,
-      };
-
-      dispatch(buySubsciption(planData))
+      const productId = data.productId;
+      dispatch(buySubsciption(productId))
         .unwrap()
         .then((res) => {
           setLoading(false);
-          router.push(res);
+          router.push(res.data);
           setOpen(false);
         })
         .catch((err) => {
@@ -129,6 +138,9 @@ const PricingPage = ({ from }) => {
     }
   };
 
+  if(loading){
+    return <Loader/>
+  }
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
       <Box textAlign="center" mb={6}>
@@ -151,7 +163,7 @@ const PricingPage = ({ from }) => {
       </Box>
 
       <Grid container spacing={4} alignItems="stretch">
-        {plans.map((plan) => (
+        {plans?.data?.map((plan) => (
           <Grid item xs={12} md={4} key={plan.title}>
             <StyledCard isPopular={plan.isPopular}>
               {plan.isPopular && (

@@ -3,9 +3,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const buySubsciption = createAsyncThunk(
   "payment/buySubscription",
-  async (planData, thunkAPI) => {
+  async (productId, thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/subscribe", planData);
+      const response = await axiosInstance.post("/subscribe", {productId});
       if (response.data) {
         return response.data;
       }
@@ -47,6 +47,7 @@ const paymentSlice = createSlice({
   initialState: {
     data: null,
     loading: false,
+    plans: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -60,7 +61,10 @@ const paymentSlice = createSlice({
       })
       .addCase(buySubsciption.rejected, (state) => {
         state.loading = false;
-      });
+      })
+      .addCase(getProductsList.fulfilled,(state,action)=>{
+        state.plans = action.payload;
+      })
   },
 });
 

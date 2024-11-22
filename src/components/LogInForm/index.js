@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Button, CircularProgress } from "@mui/material";
-import { getUserData, signInUser } from "@/store/slices/userSlice";
+import { signInUser } from "@/store/slices/userSlice";
 import { setLocalStorage } from "@/utils";
 import Loading from "@/app/loading";
 import { Eye, EyeOff } from "lucide";
@@ -55,12 +55,8 @@ const LoginForm = () => {
         .unwrap()
         .then(async (res) => {
           setLocalStorage("authToken", res?.data?.token);
-          await dispatch(getUserData())
-            .unwrap()
-            .then(() => {
-              toast.success("Login Successful !");
-              navigate.push("/userArea");
-            });
+          toast.success("Login Successful !");
+          navigate.push("/userArea");
         });
       setLoading(false);
     } catch (error) {

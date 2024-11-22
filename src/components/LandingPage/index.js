@@ -1,23 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
-import { getUserData } from "@/store/slices/userSlice";
+// import { getUserData } from "@/store/slices/userSlice";
 import Link from "next/link";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
 
 export default function LandingPage() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    async function fetchData() {
-      await dispatch(getUserData())
-        .unwrap()
-        .then(() => {
-        })
-    }
-    fetchData();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     await dispatch(getUserData())
+  //       .unwrap()
+  //       .then(() => {
+  //       })
+  //   }
+  //   fetchData();
+  // }, [dispatch]);
 
   return (
     <>
