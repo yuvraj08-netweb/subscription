@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-
 import SignUpForm from "@/components/SignUpForm";
 import Link from "next/link";
 

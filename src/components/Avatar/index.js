@@ -1,22 +1,15 @@
-import { stringToColor } from "@/utils";
+
 import { Avatar } from "@mui/material";
 
-export default function UserAvatar({ name }) {
-
-  function stringAvatar() {
-    return {
-      sx: {
-        bgcolor: "#f3f3f3",
-        width: "80px",
-        height: "80px",
-      },
-      children: ``,
-    };
-  }
+export default function UserAvatar() {
 
   return (
     <>
-      <Avatar {...stringAvatar(name)} />
+      <Avatar sx={{
+        bgcolor: "#f3f3f3",
+        width: "80px",
+        height: "80px",
+      }} />
     </>
   );
 }

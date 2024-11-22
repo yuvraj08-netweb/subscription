@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -45,71 +45,8 @@ const PricingPage = ({ from }) => {
   const [open, setOpen] = useState(false);
   const { userData } = useSelector((state) => state.user);
   const {plans} = useSelector((state)=>state.payment);
-  console.log(plans,"plan")
-  // useEffect(()=>{
-  //   setLoading(true)
-  //   dispatch(getProductsList()).unwrap().then(()=>{
-  //     setLoading(false);
-  //   }).catch(()=>{
-  //     setLoading(false);
-  //   })
-  // },[dispatch])
-
-  // const plans = [
-  //   {
-  //     title: "Starter",
-  //     price: "29",
-  //     description: "Perfect for small businesses and startups",
-  //     isPopular: false,
-  //     features: [
-  //       "Up to 5 team members",
-  //       "Basic analytics",
-  //       "24/7 support",
-  //       "2GB storage space",
-  //       "Custom domain",
-  //       "API access",
-  //     ],
-  //   },
-  //   {
-  //     title: "Growth",
-  //     price: "79",
-  //     description: "Ideal for growing companies",
-  //     isPopular: true,
-  //     features: [
-  //       "Up to 20 team members",
-  //       "Advanced analytics",
-  //       "Priority support",
-  //       "10GB storage space",
-  //       "Custom integrations",
-  //       "Advanced security",
-  //     ],
-  //   },
-  //   {
-  //     title: "Enterprise",
-  //     price: "199",
-  //     description: "For large scale enterprises",
-  //     isPopular: false,
-  //     features: [
-  //       "Unlimited team members",
-  //       "Custom analytics",
-  //       "Dedicated support",
-  //       "Unlimited storage",
-  //       "White-label solution",
-  //       "Advanced security + backup",
-  //     ],
-  //   },
-  // ];
-
+ 
   const handlePlan = async (data) => {
-    // if(userData?.data?.activePlan?.planName || userData?.activePlan?.planName === data.title  && from!=="preUser"){
-    //   await dispatch(manageSubsciption())
-    //   .unwrap()
-    //   .then((res) => {
-    //     router.push(res?.data);
-    //     toast("Manage Your Subscriptions Here!");
-    //   });
-    //   return;
-    // }
     if (from !== "preUser") {
       setOpen(true);
       setLoading(true);
@@ -219,30 +156,6 @@ const PricingPage = ({ from }) => {
                     </ListItem>
                   ))}
                 </List>
-
-                {/* {from === "preUser" ? (
-                  <Button
-                    variant={plan.isPopular ? "contained" : "outlined"}
-                    fullWidth
-                    size="large"
-                    sx={{ mt: 3 }}
-                    disabled={
-                      loading ||
-                      userData?.data?.activePlan?.planName ||
-                      userData?.activePlan?.planName === plan.title
-                        ? true
-                        : false
-                    }
-                    aria-label={`Choose ${plan.title} plan`}
-                    onClick={() => {
-                      handlePlan(plan);
-                    }}
-                  >
-                   Choose Plan
-                  </Button>
-                ) : (
-                  ""
-                )} */}
 
                 <Button
                   variant={plan.isPopular ? "contained" : "outlined"}

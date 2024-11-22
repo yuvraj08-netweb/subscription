@@ -80,8 +80,6 @@ const SignUpForm = () => {
           });
         }
         return true; // Return true if validation passes
-
-        // return mobile && mobile.phone.length >= minLength;
       }),
     password: yup
       .string()

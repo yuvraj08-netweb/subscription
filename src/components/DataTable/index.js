@@ -2,6 +2,7 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import dayjs from "dayjs";
+import { Chip } from "@mui/material";
 
 export default function DataTable({ data }) {
   const columns = [
@@ -22,23 +23,34 @@ export default function DataTable({ data }) {
       headerName: "End Date",
       width: 160,
     },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 120,
+      renderCell: (params) => {
+        return params.row.status === "active" ? (
+          <Chip label="Active" color="success" />
+        ) : null;
+      },
+    },
   ];
 
   // Mapping the data into the desired format
   const rows = data?.subscriptionHistory?.map((item, idx) => {
     return {
       id: idx+1, // Using index as ID
-      planName: item?.planName, // Plan name
-      amount: "$"+item?.amount, // Subscription amount
-      startDate: dayjs(item?.startDate).format("DD MMM, YYYY"), // Formatted start date
-      endDate: dayjs(item?.endDate).format("DD MMM, YYYY"), // Formatted end date
+      planName: item?.planName, 
+      amount: "$"+item?.amount, 
+      startDate: dayjs(item?.startDate).format("DD MMM, YYYY"),
+      endDate: dayjs(item?.endDate).format("DD MMM, YYYY"), 
+      status: item?.status,
     };
   });
 
   const paginationModel = { page: 0, pageSize: 5 };
 
   return (
-    <Paper sx={{ height: 400, width: "90%" }}>
+    <Paper sx={{ height: 400, width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}

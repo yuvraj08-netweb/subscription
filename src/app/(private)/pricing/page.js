@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import PricingPage from "@/components/PricingPage";
 
 export const metadata = {

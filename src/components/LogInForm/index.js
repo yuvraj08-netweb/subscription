@@ -40,7 +40,7 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
     mode: "onChange",
     defaultValues: {
-      emailId: "", // Default value for fullName
+      emailId: "", 
       password: "",
     },
   });

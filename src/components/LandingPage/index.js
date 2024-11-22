@@ -1,23 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
-// import { getUserData } from "@/store/slices/userSlice";
 import Link from "next/link";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
 
 export default function LandingPage() {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     await dispatch(getUserData())
-  //       .unwrap()
-  //       .then(() => {
-  //       })
-  //   }
-  //   fetchData();
-  // }, [dispatch]);
 
   return (
     <>
@@ -521,7 +507,7 @@ export default function LandingPage() {
         <div className="mx-auto max-w-screen-xl">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <Link href="https://flowbite.com" className="flex items-center">
+              <Link href="#" className="flex items-center">
                 <img
                   src="https://flowbite.com/docs/images/logo.svg"
                   className="mr-3 h-8"
@@ -540,7 +526,7 @@ export default function LandingPage() {
                 <ul className="text-gray-600 dark:text-gray-400">
                   <li className="mb-4">
                     <Link
-                      href="https://flowbite.com"
+                      href="#"
                       className="hover:underline"
                     >
                       Flowbite
@@ -548,7 +534,7 @@ export default function LandingPage() {
                   </li>
                   <li>
                     <Link
-                      href="https://tailwindcss.com/"
+                      href="#"
                       className="hover:underline"
                     >
                       Tailwind CSS
@@ -563,7 +549,7 @@ export default function LandingPage() {
                 <ul className="text-gray-600 dark:text-gray-400">
                   <li className="mb-4">
                     <Link
-                      href="https://github.com/themesberg/flowbite"
+                      href="https://github.com/"
                       className="hover:underline "
                     >
                       Github
@@ -571,7 +557,7 @@ export default function LandingPage() {
                   </li>
                   <li>
                     <Link
-                      href="https://discord.gg/4eeurUVvTy"
+                      href="https://discord.gg"
                       className="hover:underline"
                     >
                       Discord
@@ -602,7 +588,7 @@ export default function LandingPage() {
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
               © 2022{" "}
-              <Link href="https://flowbite.com" className="hover:underline">
+              <Link href="#" className="hover:underline">
                 Flowbite™
               </Link>
               . All Rights Reserved.

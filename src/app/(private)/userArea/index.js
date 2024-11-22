@@ -3,7 +3,7 @@
 
 import PricingPage from "@/components/PricingPage";
 import UserProfilePage from "@/components/UserProfilePage";
-import Loader from "@/components/Loader"; // Import a Loader component
+import Loader from "@/components/Loader"; 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserData } from "@/store/slices/userSlice";
@@ -12,8 +12,8 @@ import { getProductsList } from "@/store/slices/paymentSlice";
 const UserAreaContent = () => {
   const { userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true); // Loading state
-  console.log(userData)
+  const [loading, setLoading] = useState(true);
+
   async function fetchData() {
     setLoading(true);
     await dispatch(getUserData())
@@ -27,7 +27,7 @@ const UserAreaContent = () => {
   }
 
   useEffect(() => {
-    fetchData(); // Fetch data on return from Stripe
+    fetchData(); 
   }, [dispatch]);
 
   if (loading) {

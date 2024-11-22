@@ -18,7 +18,6 @@ const CustomerInfoSection = () => {
     await dispatch(manageSubsciption())
       .unwrap()
       .then((res) => {
-        console.log(res,"MSdata")
         router.push(res.data);
       });
   };
@@ -26,7 +25,7 @@ const CustomerInfoSection = () => {
   return (
     <Box className="md:w-[500px]  !h-fit !bg-[white] table-box-shadow border-box rounded-lg !px-4 !py-3 mt-10">
       <div className="flex flex-row-reverse justify-between mb-5">
-        <UserAvatar name={userData?.data?.fullName || userData?.fullName} />
+        <UserAvatar />
         <div className="">
           <Button
             variant="contained"
