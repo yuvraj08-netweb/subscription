@@ -32,9 +32,9 @@ export const manageSubsciption = createAsyncThunk(
   "payment/manageSubsciption",
   async (thunkAPI) => {
     try {
-      const response = await axiosInstance.get("/customers");
+      const response = await axiosInstance.post("/customers");
       if (response.data) {
-        return response;
+        return response.data;
       }
     } catch (error) {
       throw thunkAPI.rejectWithValue(error.message);

@@ -18,7 +18,8 @@ const CustomerInfoSection = () => {
     await dispatch(manageSubsciption())
       .unwrap()
       .then((res) => {
-        router.push(res?.data);
+        console.log(res,"MSdata")
+        router.push(res.data);
       });
   };
 
