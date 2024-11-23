@@ -28,11 +28,24 @@ export const getProductsList = createAsyncThunk(
     }
   }
 );
-export const manageSubsciption = createAsyncThunk(
-  "payment/manageSubsciption",
+export const manageSubscription = createAsyncThunk(
+  "payment/manageSubscription",
   async (thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/customers");
+      const response = await axiosInstance.post("/manageSubscription");
+      if (response.data) {
+        return response.data;
+      }
+    } catch (error) {
+      throw thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const updateSubsciption = createAsyncThunk(
+  "payment/updateSubscription",
+  async (thunkAPI) => {
+    try {
+      const response = await axiosInstance.post("/updateSubscription");
       if (response.data) {
         return response.data;
       }
@@ -42,6 +55,20 @@ export const manageSubsciption = createAsyncThunk(
   }
 );
 
+export const buyProduct = createAsyncThunk(
+  "payment/buyProduct",
+  async ({productData}, thunkAPI) => {
+    console.log(productData);
+    try {
+      const response = await axiosInstance.post("/payment",productData);
+      if (response.data) {
+        return response.data;
+      }
+    } catch (error) {
+      throw thunkAPI.rejectWithValue(error.message);
+    }
+  }
+)
 const paymentSlice = createSlice({
   name: "payment",
   initialState: {

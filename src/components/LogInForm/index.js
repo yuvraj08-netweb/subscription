@@ -9,8 +9,6 @@ import { useRouter } from "next/navigation";
 import { Button, CircularProgress } from "@mui/material";
 import { signInUser } from "@/store/slices/userSlice";
 import { setLocalStorage } from "@/utils";
-import Loading from "@/app/loading";
-import { Eye, EyeOff } from "lucide";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -75,7 +73,8 @@ const LoginForm = () => {
         <Controller
           name="emailId"
           control={control}
-          render={({ field }) => <input {...field} placeholder="Email Id" />}
+          render={({ field }) => <input {...field} placeholder="Email Id" 
+          className="dark:!text-white" />}
         />
         <p className="errorPara">{errors.emailId?.message}</p>
       </div>
@@ -90,9 +89,10 @@ const LoginForm = () => {
                 placeholder="Enter Password"
                 type={showPassword ? "text" : "password"}
                 id="password"
+                className="!pr-12 dark:!text-white"
               />
               <span
-                className="absolute top-2 right-5 text-[#fff] cursor-pointer"
+                className="absolute top-2 right-3 cursor-pointer"
                 onClick={togglePasswordVisibility}
               >
                 {!showPassword ? (
@@ -102,7 +102,7 @@ const LoginForm = () => {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
+                    stroke="gray"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -120,7 +120,7 @@ const LoginForm = () => {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
+                    stroke="gray"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

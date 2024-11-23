@@ -7,7 +7,7 @@ import UserAvatar from "../Avatar";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { manageSubsciption } from "@/store/slices/paymentSlice";
+import { manageSubscription } from "@/store/slices/paymentSlice";
 
 const CustomerInfoSection = () => {
   const { userData, loading } = useSelector((state) => state.user);
@@ -15,7 +15,7 @@ const CustomerInfoSection = () => {
   const router = useRouter();
 
   const handleManageSubscription = async () => {
-    await dispatch(manageSubsciption())
+    await dispatch(manageSubscription())
       .unwrap()
       .then((res) => {
         router.push(res.data);

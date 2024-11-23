@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <>
       <header>
-        <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+        <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-gray-800">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <Link href="/" className="flex items-center">
               <img
@@ -42,7 +42,7 @@ export default function Navbar() {
                 className="mr-3 h-6 sm:h-9"
                 alt="Flowbite Logo"
               />
-              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
                 CompanyName
               </span>
             </Link>
@@ -50,13 +50,13 @@ export default function Navbar() {
               <div className="flex items-center lg:order-2">
                 <Link
                   href="/login"
-                  className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                  className="!text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 hover:bg-gray-700 focus:outline-none focus:ring-gray-800"
                 >
                   Log in
                 </Link>
                 <Link
                   href="/sign-up"
-                  className="text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-slate-800"
+                  className="focus:ring-4 !text-white font-medium rounded-lg text-sm px-5 py-2.5 mr-2 bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-slate-800"
                 >
                   Get started
                 </Link>
@@ -65,29 +65,37 @@ export default function Navbar() {
               <div className="flex items-center gap-2 lg:order-2">
                  {
                   pathname!=="/userArea" &&  <Link
-                  className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                  className="!text-white focus:ring-4 font-medium rounded-lg text-sm px-3 py-2.5  hover:bg-gray-700 focus:outline-none focus:ring-gray-800"
                   href="/userArea"
                 >
                   User Area
                 </Link>
                 }
                 {
-                  userData?.data?.messageForNull || userData?.messageForNull ? null :   <Button
-                  className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-                  onClick={()=>{
-                    router.push("/pricing")
-                  }}
+                  userData?.data?.messageForNull || userData?.messageForNull ? null :   <Link
+                  className="!text-white focus:ring-4  font-medium rounded-lg text-sm px-3 py-2.5 hover:bg-gray-700 focus:outline-none focus:ring-gray-800"
+                  href="/pricing"
+                
                 >
                   Pricing
-                </Button>
+                </Link>
+                }
+                {
+                  userData?.data?.messageForNull || userData?.messageForNull ? null :   <Link
+                  className="!text-white  focus:ring-4  font-medium rounded-lg text-sm px-3 py-2.5 hover:bg-gray-700 focus:outline-none focus:ring-gray-800"
+                  href="/products"
+                  
+                >
+                  Products
+                </Link>
                 }
               
-               
+                
                 <Button
-                  className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                  className="!text-white focus:ring-4  font-medium rounded-lg text-sm px-6 py-2.5 mr-2 hover:bg-gray-700 focus:outline-none focus:ring-gray-800 !normal-case"
                   onClick={handleLogout}
                 >
-                  Log Out
+                  Logout
                 </Button>
                
                 

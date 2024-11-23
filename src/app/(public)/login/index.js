@@ -22,7 +22,7 @@ const LoginPageContent = () => {
               </h2>
               <p className="mt-2 text-sm text-gray-500">
                 Not a member?
-                <Link href="/sign-up" className="font-semibold text-slate-300">
+                <Link href="/sign-up" className="font-semibold text-slate-600 dark:!text-slate-300">
                   {" "}
                   Sign Up Here
                 </Link>

@@ -185,8 +185,8 @@ const SignUpForm = () => {
                   padding: "5px 55px",
                   width: "100%",
                   border: "1px solid #535c91",
-                  background: "#ffffff1e",
-                  color: "#fff",
+                  background: "transparent",
+                  color: "#9e9d9d",
                 }}
               />
             );
@@ -207,7 +207,7 @@ const SignUpForm = () => {
                 id="password"
               />
               <span
-                className="absolute top-2 right-5 text-[#fff] cursor-pointer"
+                className="absolute top-1.5 right-3 text-[#fff] cursor-pointer"
                 onClick={togglePasswordVisibility}
               >
                 {showPassword ? (
@@ -217,7 +217,7 @@ const SignUpForm = () => {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
+                    stroke="gray"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -233,7 +233,7 @@ const SignUpForm = () => {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
+                    stroke="gray"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -264,7 +264,7 @@ const SignUpForm = () => {
                 id="confirmPassword"
               />
               <span
-                className="absolute top-2 right-5 text-[#fff] cursor-pointer"
+                className="absolute top-1.5 right-3  cursor-pointer"
                 onClick={toggleConfirmPasswordVisibility}
               >
                 {showConfirmPassword ? (
@@ -274,7 +274,7 @@ const SignUpForm = () => {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
+                    stroke="gray"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -290,7 +290,7 @@ const SignUpForm = () => {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
+                    stroke="gray"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

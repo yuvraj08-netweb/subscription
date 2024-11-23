@@ -7,7 +7,6 @@ import Loader from "@/components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserData } from "@/store/slices/userSlice";
-import { getProductsList } from "@/store/slices/paymentSlice";
 
 const UserAreaContent = () => {
   const { userData } = useSelector((state) => state.user);
@@ -19,9 +18,6 @@ const UserAreaContent = () => {
     await dispatch(getUserData())
       .unwrap()
       .then(() => {
-        dispatch(getProductsList()).unwrap().then(()=>{
-          setLoading(false);
-        })
         setLoading(false);
       })
   }

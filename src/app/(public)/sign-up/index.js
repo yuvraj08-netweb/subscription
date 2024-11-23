@@ -6,13 +6,6 @@ export default function SignUpPageContent() {
   return (
     <div className="flex justify-center align-center min-h-screen w-full">
       <div className="flex !w-full justify-center">
-        <div className="container md:block hidden md:!w-[50%]">
-          <img
-            src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-            alt="formImage"
-            className="h-full  max-w-full object-cover"
-          />
-        </div>
         <div className="container md:!w-[50%] !w-full md:px-20 px-12 flex flex-col py-5 justify-center items-center">
           <div className="formContianer max-w-xl md:w-full">
             <div className="formHeader">
@@ -29,7 +22,7 @@ export default function SignUpPageContent() {
               </h2>
               <p className="mt-2 text-sm text-gray-500">
                 Already a member?
-                <Link href="/login" className="font-semibold text-slate-300">
+                <Link href="/login" className="font-semibold text-slate-600 dark:!text-slate-300">
                 
                   Log In Here
                 </Link>
@@ -41,6 +34,13 @@ export default function SignUpPageContent() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="container md:block hidden md:!w-[50%]">
+          <img
+            src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
+            alt="formImage"
+            className="h-full  max-w-full object-cover"
+          />
         </div>
       </div>
     </div>
