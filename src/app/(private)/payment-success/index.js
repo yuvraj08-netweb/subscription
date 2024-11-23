@@ -37,7 +37,7 @@ export default function PaymentStatus() {
           <Button
             variant="outlined"
             color="success"
-            onClick={() => router.push("/userArea")}
+            onClick={() => router.push("/dashboard")}
           >
             Go To Dashboard
           </Button>

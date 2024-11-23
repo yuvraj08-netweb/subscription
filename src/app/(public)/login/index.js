@@ -15,7 +15,7 @@ const LoginPageContent = () => {
                   className="mr-3 h-6 sm:h-9"
                   alt="Flowbite Logo"
                 />
-                CompanyName
+                SubPay
               </div>
               <h2 className="text-2xl leading-9 font-bold mt-8 text-gray-800 dark:text-white">
                 Sign in to your account

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import Loader from "@/components/Loader";
 import { buyProduct } from "@/store/slices/paymentSlice";
 import { Backdrop, CircularProgress } from "@mui/material";
 import Link from "next/link";
@@ -91,6 +92,9 @@ export default function ProductsContent() {
     }
   };
 
+  if(loading){
+    return <Loader/>
+  }
   return (
     <>
       {/* title */}
@@ -149,10 +153,10 @@ export default function ProductsContent() {
           </div>
         ))}
         <Backdrop
-          sx={(theme) => ({ color: "#00f", zIndex: theme.zIndex.drawer + 1 })}
+          sx={(theme) => ({ color: "#000", zIndex: theme.zIndex.drawer + 1 })}
           open={open}
         >
-          <CircularProgress color="#00f" />
+          <CircularProgress color="#000" />
         </Backdrop>
       </section>
       {/* 🛑 Grid Section - Ends Here */}

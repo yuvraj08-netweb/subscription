@@ -1,7 +1,7 @@
 import PricingPage from "@/components/PricingPage";
 
 export const metadata = {
-    title: "CompanyName | Pricing Page",
+    title: "SubPay | Subscription Page",
     description: "",
 };
 

@@ -1,7 +1,7 @@
 import LoginPageContent from ".";
 
 export const metadata = {
-    title: "CompanyName | Login Page",
+    title: "SubPay | Login Page",
     description: "",
 };
 

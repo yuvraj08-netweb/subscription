@@ -16,13 +16,17 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "CompanyName",
+  title: "SubPay",
   description: "",
+
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/5332/5332306.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

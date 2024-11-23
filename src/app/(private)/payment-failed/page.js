@@ -1,7 +1,7 @@
 import PaymentFailed from ".";
 
 export const metadata = {
-  title: "CompanyName | Payment Failed",
+  title: "SubPay | Payment Failed",
   description: "",
 };
 

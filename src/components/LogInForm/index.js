@@ -54,7 +54,7 @@ const LoginForm = () => {
         .then(async (res) => {
           setLocalStorage("authToken", res?.data?.token);
           toast.success("Login Successful !");
-          navigate.push("/userArea");
+          navigate.push("/dashboard");
         });
       setLoading(false);
     } catch (error) {

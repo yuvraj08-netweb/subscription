@@ -50,7 +50,8 @@ const PricingPage = ({ from }) => {
   const { userData } = useSelector((state) => state.user);
   const { plans } = useSelector((state) => state.payment);
   const [planLoading, setPlanLoading] = useState(false);
-
+  console.log(userData,"userData");
+  
   useEffect(() => {
     setPlanLoading(true);
     dispatch(getProductsList())
@@ -61,7 +62,7 @@ const PricingPage = ({ from }) => {
   }, [dispatch]);
 
   const handlePlan = async (data) => {
-    if (from !== "preUser") {
+    if (!userData?.data?.messageForNull) {
       setOpen(true);
       setLoading(true);
       await dispatch(updateSubsciption())
@@ -193,7 +194,7 @@ const PricingPage = ({ from }) => {
                       handlePlan(plan);
                     }}
                   >
-                    {from === "preUser"
+                    {userData?.data?.messageForNull
                       ? "Choose Plan"
                       : userData?.data?.activePlan?.planName === plan.title
                       ? "Current Plan"

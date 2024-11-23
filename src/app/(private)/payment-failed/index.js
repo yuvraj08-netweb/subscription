@@ -37,7 +37,7 @@ const PaymentFailed = () => {
           <Button
             variant="outlined"
             color="error"
-            onClick={() => router.push("/userArea")}
+            onClick={() => router.push("/dashboard")}
           >
             Go Back
           </Button>

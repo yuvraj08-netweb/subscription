@@ -43,7 +43,7 @@ export default function Navbar() {
                 alt="Flowbite Logo"
               />
               <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
-                CompanyName
+                SubPay
               </span>
             </Link>
             {authToken === null ? (
@@ -64,29 +64,29 @@ export default function Navbar() {
             ) : (
               <div className="flex items-center gap-2 lg:order-2">
                  {
-                  pathname!=="/userArea" &&  <Link
+                  pathname!=="/dashboard" &&  <Link
                   className="!text-white focus:ring-4 font-medium rounded-lg text-sm px-3 py-2.5  hover:bg-gray-700 focus:outline-none focus:ring-gray-800"
-                  href="/userArea"
+                  href="/dashboard"
                 >
-                  User Area
+                  Dashboard
                 </Link>
                 }
                 {
-                  userData?.data?.messageForNull || userData?.messageForNull ? null :   <Link
+                <Link
                   className="!text-white focus:ring-4  font-medium rounded-lg text-sm px-3 py-2.5 hover:bg-gray-700 focus:outline-none focus:ring-gray-800"
-                  href="/pricing"
+                  href="/subscription"
                 
                 >
-                  Pricing
+                  Subscription
                 </Link>
                 }
                 {
-                  userData?.data?.messageForNull || userData?.messageForNull ? null :   <Link
+                  <Link
                   className="!text-white  focus:ring-4  font-medium rounded-lg text-sm px-3 py-2.5 hover:bg-gray-700 focus:outline-none focus:ring-gray-800"
-                  href="/products"
+                  href="/payment"
                   
                 >
-                  Products
+                  Payment
                 </Link>
                 }
               

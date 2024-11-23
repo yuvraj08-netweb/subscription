@@ -1,7 +1,7 @@
 import SignUpPageContent from ".";
 
 export const metadata = {
-    title: "CompanyName | Sign-Up Page",
+    title: "SubPay | Sign-Up Page",
     description: "",
 };
 

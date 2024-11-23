@@ -15,7 +15,7 @@ export default function SignUpPageContent() {
                 className="mr-3 h-6 sm:h-9"
                 alt="Flowbite Logo"
               />
-              CompanyName
+              SubPay
               </div>
               <h2 className="text-2xl leading-9 font-bold mt-8 text-black dark:text-white">
                 Sign up for your account

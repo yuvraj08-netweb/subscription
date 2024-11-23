@@ -1,7 +1,7 @@
 import PaymentStatus from ".";
 
 export const metadata = {
-  title: "CompanyName | Payment Successfull",
+  title: "SubPay | Payment Successfull",
   description: "",
 };
 

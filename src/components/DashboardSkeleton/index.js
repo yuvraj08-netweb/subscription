@@ -3,7 +3,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 
-const UserAreaSkeleton = () => {
+const DashboardSkeleton = () => {
   return (
     <Box className="w-[90%] mx-auto h-fit bg-white rounded-lg px-4 py-3 mt-10 flex gap-10 lg:flex-row flex-col">
       <Box className="w-full">
@@ -43,4 +43,4 @@ const UserAreaSkeleton = () => {
   );
 };
 
-export default UserAreaSkeleton;
+export default DashboardSkeleton;
