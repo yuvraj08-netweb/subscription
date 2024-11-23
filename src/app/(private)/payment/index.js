@@ -98,11 +98,12 @@ export default function ProductsContent() {
   return (
     <>
       {/* title */}
-      <div className="text-center p-10">
+      <div className="!text-center p-10">
         <h1 className="font-bold text-4xl mb-4">
-          Responsive Product card grid
+          One Time Payment Demo
         </h1>
-        <h1 className="text-xl">One Time Payment Demonstration</h1>
+        <h2 className="text-lg max-w-[500px] mx-auto">
+        Explore a selection of products, each with a convenient Buy Now button. Simply click to be redirected to Stripe&apos;s secure payment page and complete your one-time purchase effortlessly.</h2>
       </div>
       {/* ✅ Grid Section - Starts Here 👇 */}
       <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">

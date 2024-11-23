@@ -509,12 +509,12 @@ export default function LandingPage() {
             <div className="mb-6 md:mb-0">
               <Link href="#" className="flex items-center">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src="https://cdn-icons-png.flaticon.com/256/5332/5332306.png"
                   className="mr-3 h-8"
                   alt="FlowBite Logo"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Flowbite
+                  Subpay
                 </span>
               </Link>
             </div>
@@ -589,7 +589,7 @@ export default function LandingPage() {
             <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
               © 2022{" "}
               <Link href="#" className="hover:underline">
-                Flowbite™
+                SubPay™
               </Link>
               . All Rights Reserved.
             </span>
