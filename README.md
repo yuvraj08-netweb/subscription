@@ -43,13 +43,13 @@ To run this project, you need:
    
 ## Usage
 
-1. One-Time Payments:
+1. **One-Time Payments:**
 
   - Browse the product list.
   - Click the "Buy Now" button to initiate a one-time payment.
   - Complete the transaction on Stripe's hosted payment page.
   
-2. Subscriptions:
+2. **Subscriptions:**
 
   - Select a subscription plan.
   - Proceed to Stripe's checkout page to set up recurring billing.
